@@ -8,8 +8,8 @@ A unified hooking library for Windows with support for local and remote processe
 |------|-------|----------------------|
 | Detour | Inline patch at function start | Yes |
 | IAT | Import table redirect | No (local only) |
-| EAT | Export table redirect | No (local only) |
-| VTable | Virtual table swap | No (local only) |
+| EAT | Export table redirect | Not implemented yet |
+| VTable | Virtual table swap | Not implemented yet) |
 
 ## Features
 
@@ -22,14 +22,10 @@ A unified hooking library for Windows with support for local and remote processe
 ## Usage
 
 ```cpp
-hooks::Manager mgr;
-
-// Local IAT hook
-mgr.add_iat("user32.dll", "MessageBoxA", (uintptr_t)&MyMessageBoxA);
-
-// Remote detour
-HANDLE hProc = OpenProcess(PROCESS_ALL_ACCESS, FALSE, pid);
-mgr.add_detour(hProc, target_addr, (uintptr_t)&MyFunction);
-
-// Enable all
-mgr.enable_all();
+  auto hook = hooks::user::iat("user32.dll", "MessageBoxA", (uintptr_t)&MyMessageBoxA);
+    if (!hook || !hook->enable()) {
+        printf("Hook failed\n");
+        return 1;
+    }
+    printf("hook installed\n");
+  MessageBoxA(NULL, "Hello", "Test", MB_OK);
