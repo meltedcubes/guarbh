@@ -1,4 +1,4 @@
-# guardbh
+# guarbh
 
 A unified hooking library for Windows with support for local and remote processes. Provides detour, IAT, EAT, and VTable hooks through a single interface.
 
