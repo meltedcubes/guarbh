@@ -9,7 +9,7 @@ A unified hooking library for Windows with support for local and remote processe
 | Detour | Inline patch at function start | Yes |
 | IAT | Import table redirect | No (local only) |
 | EAT | Export table redirect | Not implemented yet |
-| VTable | Virtual table swap | Not implemented yet) |
+| VTable | Virtual table swap | Not implemented yet |
 
 ## Features
 
